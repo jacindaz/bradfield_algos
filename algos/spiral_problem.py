@@ -50,7 +50,6 @@ class Spiral():
         print(f"\nright method")
         while self.current_width < (self.width-self.current_ring):
             self._log_state()
-
             self.current += 1
             self.current_width += 1
             self.result[self.current_height][self.current_width] = self.current
@@ -61,29 +60,29 @@ class Spiral():
         print(f"\ndown method")
 
         while self.current_height < (self.height-self.current_ring):
+            self._log_state()
             self.current += 1
             self.current_height += 1
             self.result[self.current_height][self.current_width] = self.current
-            self._log_state()
 
         self.is_done()
 
     def left(self):
         print(f"\nleft method")
         while self.current_width > (self.current_ring-1):
+            self._log_state()
             self.current += 1
             self.current_width -= 1
             self.result[self.current_height][self.current_width] = self.current
-            self._log_state()
 
         self.is_done()
 
     def up(self):
         print(f"\nup method")
         while self.current_height > self.current_ring:
+            self._log_state()
             self.current += 1
             self.current_height -= 1
             self.result[self.current_height][self.current_width] = self.current
-            self._log_state()
 
         self.is_done()
