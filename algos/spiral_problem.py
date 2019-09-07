@@ -34,6 +34,9 @@ class Spiral(object):
         else:
             self.done = False
 
+    def _log_state(self):
+        print(f"current_height: {self.current_height}, current_width: {self.current_width}, self.current: {self.current}")
+
     def build_result(self):
         self.result = []
 
@@ -46,7 +49,7 @@ class Spiral(object):
     def right(self):
         print(f"\nright method")
         while self.current_width < (self.width-self.current_ring):
-            print(f"current_height: {self.current_height}, current_width: {self.current_width}, self.current: {self.current}")
+            self._log_state()
 
             self.current += 1
             self.current_width += 1
@@ -61,7 +64,7 @@ class Spiral(object):
             self.current += 1
             self.current_height += 1
             self.result[self.current_height][self.current_width] = self.current
-            print(f"current_height: {self.current_height}, current_width: {self.current_width}, self.current: {self.current}")
+            self._log_state()
 
         self.is_done()
 
@@ -71,7 +74,7 @@ class Spiral(object):
             self.current += 1
             self.current_width -= 1
             self.result[self.current_height][self.current_width] = self.current
-            print(f"current_height: {self.current_height}, current_width: {self.current_width}, self.current: {self.current}")
+            self._log_state()
 
         self.is_done()
 
@@ -81,14 +84,6 @@ class Spiral(object):
             self.current += 1
             self.current_height -= 1
             self.result[self.current_height][self.current_width] = self.current
-            print(f"current_height: {self.current_height}, current_width: {self.current_width}, self.current: {self.current}")
+            self._log_state()
 
         self.is_done()
-
-
-# spiral = Spiral(1, 4)
-# spiral = Spiral(3, 4)
-spiral = Spiral(4,4)
-# spiral = Spiral(6,6)
-spiral.run()
-print(spiral.result)
