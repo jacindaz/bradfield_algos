@@ -17,12 +17,25 @@ class Spiral():
         if self.result[0][0] is None:
             self.result[0][0] = self.current
 
-        while done is False:
-            self.right()
-            self.down()
-            self.left()
-            self.up()
+        while self.done is False:
+            if self.done is False:
+                self.right()
+            if self.done is False:
+                self.down()
+            if self.done is False:
+                self.left()
+            if self.done is False:
+                self.up()
             self.current_ring += 1
+
+    def is_done(self):
+        if self.current >= (self.width * self.height):
+            self.done = True
+        else:
+            self.done = False
+
+    def _log_state(self):
+        print(f"current_height: {self.current_height}, current_width: {self.current_width}, self.current: {self.current}")
 
     def build_result(self):
         self.result = []
@@ -35,59 +48,41 @@ class Spiral():
 
     def right(self):
         print(f"\nright method")
-        while self.current_width < (self.width - self.current_ring):
-            print(f"current_height: {self.current_height}, current_width: {self.current_width}")
-
+        while self.current_width < (self.width-self.current_ring):
+            self._log_state()
             self.current += 1
             self.current_width += 1
             self.result[self.current_height][self.current_width] = self.current
 
-            if self.current >= (self.height * self.width):
-                break
+        self.is_done()
 
     def down(self):
         print(f"\ndown method")
 
-        while self.current_height < self.height-1:
+        while self.current_height < (self.height-self.current_ring):
+            self._log_state()
             self.current += 1
             self.current_height += 1
             self.result[self.current_height][self.current_width] = self.current
-            print(f"current_height: {self.current_height}, current_width: {self.current_width}")
 
-            # if self.current_ring == 2:
-            #     import ipdb; ipdb.set_trace()
-
-            if self.current >= (self.height * self.width):
-                # TODO: need to figure out how to break out of loops
-                # internet says not good to have 2 while loops
-                break
+        self.is_done()
 
     def left(self):
         print(f"\nleft method")
-
-        # will not work later when going left for inner rings
-        while self.current_width > 0:
+        while self.current_width > (self.current_ring-1):
+            self._log_state()
             self.current += 1
             self.current_width -= 1
             self.result[self.current_height][self.current_width] = self.current
-            print(f"current_height: {self.current_height}, current_width: {self.current_width}")
 
-            if self.current >= (self.height * self.width):
-                break
+        self.is_done()
 
     def up(self):
         print(f"\nup method")
-
         while self.current_height > self.current_ring:
+            self._log_state()
             self.current += 1
             self.current_height -= 1
             self.result[self.current_height][self.current_width] = self.current
-            print(f"current_height: {self.current_height}, current_width: {self.current_width}")
 
-            if self.current >= (self.height * self.width):
-                break
-
-
-spiral = Spiral(3, 4)
-spiral.run()
-print(spiral.result)
+        self.is_done()
