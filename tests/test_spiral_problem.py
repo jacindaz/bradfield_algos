@@ -1,5 +1,6 @@
 import pytest
 import algos.spiral_problem as spiral
+import algos.spiral_problem2 as spiral2
 
 
 @pytest.mark.parametrize("height, width, expected", [
@@ -31,3 +32,7 @@ def test_spiral_problem(height, width, expected):
     spiral_instance.run()
 
     assert spiral_instance.result == expected
+
+    # simpler solution
+    simpler_solution = spiral2.build_spiral(height, width)
+    assert simpler_solution == expected
