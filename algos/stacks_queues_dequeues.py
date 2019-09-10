@@ -30,3 +30,22 @@ def reversed_list(orig_list):
     while not my_stack.is_empty():
         result.append(my_stack.pop())
     return result
+
+
+class Queue(Stack):
+    def __init__(self, items=[]):
+        self.items = items
+
+    def enqueue(self, item):
+        """Adds item to beg"""
+        return self.items.insert(0, item)
+
+    def dequeue(self):
+        """Removes item from end"""
+        return super().pop()
+
+    def is_empty(self):
+        return super().is_empty()
+
+    def size(self):
+        return super().size()
