@@ -1,4 +1,5 @@
 class Stack:
+    """ LIFO: last in first out """
     def __init__(self, items=[]):
         self.items = items
 
@@ -6,11 +7,11 @@ class Stack:
         return len(self.items) == 0
 
     def push(self, new_item):
-        """Adds item to end"""
+        """ Adds item to end """
         return self.items.append(new_item)
 
     def pop(self):
-        """Removes items from end"""
+        """ Removes items from end """
         return self.items.pop()
 
     def peek(self):
@@ -33,12 +34,12 @@ def reversed_list(orig_list):
 
 
 class Queue(Stack):
-    # FIFO: first in first out
+    """ FIFO: first in first out """
     def __init__(self, stack):
         self.stack = stack
 
     def enqueue(self, new_item):
-        """Adds item to beg"""
+        """ Adds item to beg """
         reversed_stack = Stack(reversed_list(self.stack.items))
         new_stack = Stack([])
         new_stack.push(new_item)
@@ -52,7 +53,7 @@ class Queue(Stack):
 
 
     def dequeue(self):
-        """Removes item from end"""
+        """ Removes item from end """
         return self.stack.pop()
 
     def is_empty(self):
