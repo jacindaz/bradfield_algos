@@ -38,21 +38,16 @@ class Queue(Stack):
         self.stack = stack
 
     def enqueue(self, new_item):
-        """ Adds item to beg """
-        reversed_stack = Stack(reversed_list(self.stack))
-        new_stack = Stack([])
-        new_stack.push(new_item)
-
-        while not reversed_stack.is_empty():
-            to_add = reversed_stack.pop()
-            new_stack.push(to_add)
-
-        self.stack = new_stack
-        return new_stack
+        """ Adds item to end """
+        return self.stack.push(new_item)
 
     def dequeue(self):
-        """ Removes item from end """
-        return self.stack.pop()
+        """ Removes item from front """
+        reversed_stack = Stack(reversed_list(self.stack))
+        removed_item = reversed_stack.pop()
+
+        self.stack = Stack(reversed_list(reversed_stack))
+        return removed_item
 
     def is_empty(self):
         return self.stack.is_empty()

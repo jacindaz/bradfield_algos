@@ -22,7 +22,7 @@ def test_queue_enqueue(my_stack):
     assert queue.size() == len(my_stack.items)
 
     queue.enqueue("another item")
-    assert queue.stack.items[0] == "another item"
+    assert queue.stack.items[-1] == "another item"
 
 
 @pytest.mark.parametrize("my_stack, expected_size, expected_is_empty", [
@@ -37,6 +37,6 @@ def test_queue_dequeue(my_stack, expected_size, expected_is_empty):
     assert queue.is_empty() == expected_is_empty
 
     if not queue.is_empty():
-        last_item = my_stack.items[-1]
+        first_item = my_stack.items[0]
         removed_item = queue.dequeue()
-        assert removed_item == last_item
+        assert removed_item == first_item
