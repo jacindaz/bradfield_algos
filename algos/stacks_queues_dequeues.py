@@ -21,14 +21,12 @@ class Stack:
         return len(self.items)
 
 
-def reversed_list(orig_list):
+def reversed_list(my_stack):
     """
     Write a function that uses a stack
     to return a reversed copy of a list.
     """
-    my_stack = Stack(orig_list)
     result = []
-
     while not my_stack.is_empty():
         result.append(my_stack.pop())
     return result
@@ -41,7 +39,7 @@ class Queue(Stack):
 
     def enqueue(self, new_item):
         """ Adds item to beg """
-        reversed_stack = Stack(reversed_list(self.stack.items))
+        reversed_stack = Stack(reversed_list(self.stack))
         new_stack = Stack([])
         new_stack.push(new_item)
 
