@@ -33,19 +33,30 @@ def reversed_list(orig_list):
 
 
 class Queue(Stack):
-    def __init__(self, items=[]):
-        self.items = items
+    # FIFO: first in first out
+    def __init__(self, stack):
+        self.stack = stack
 
-    def enqueue(self, item):
+    def enqueue(self, new_item):
         """Adds item to beg"""
-        return self.items.insert(0, item)
+        reversed_stack = Stack(reversed_list(self.stack.items))
+        new_stack = Stack([])
+        new_stack.push(new_item)
+
+        while not reversed_stack.is_empty():
+            to_add = reversed_stack.pop()
+            new_stack.push(to_add)
+
+        self.stack = new_stack
+        return new_stack
+
 
     def dequeue(self):
         """Removes item from end"""
-        return super().pop()
+        pass
 
     def is_empty(self):
-        return super().is_empty()
+        pass
 
     def size(self):
-        return super().size()
+        pass

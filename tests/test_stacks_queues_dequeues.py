@@ -12,18 +12,14 @@ def test_reversed_list(original_list, expected):
     assert actual == expected
 
 
-@pytest.mark.parametrize("original_list", [
-    ([1,2,3]),
-    (["hi", 2, "blah", 100])
+@pytest.mark.parametrize("my_stack", [
+    (sqd.Stack([1,2,3])),
+    (sqd.Stack(["hi", 2, "blah", 100]))
 ])
-def test_queue(original_list):
-    queue = sqd.Queue(original_list)
+def test_queue_enqueue(my_stack):
+    queue = sqd.Queue(my_stack)
 
-    assert queue.size() == len(original_list)
+    assert queue.size() == len(my_stack.items)
 
     queue.enqueue("another item")
-    assert queue.items[0] == "another item"
-
-    last_item = original_list[-1]
-    removed_item = queue.dequeue()
-    assert removed_item == last_item
+    assert queue.stack.items[0] == "another item"
