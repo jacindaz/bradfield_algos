@@ -20,6 +20,7 @@ class Stack:
     def size(self):
         return len(self.items)
 
+
 def reversed_list(orig_list):
     """
     Write a function that uses a stack
@@ -50,7 +51,6 @@ class Queue(Stack):
 
         self.stack = new_stack
         return new_stack
-
 
     def dequeue(self):
         """ Removes item from end """
