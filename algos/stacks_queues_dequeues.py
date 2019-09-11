@@ -53,10 +53,10 @@ class Queue(Stack):
 
     def dequeue(self):
         """Removes item from end"""
-        pass
+        return self.stack.pop()
 
     def is_empty(self):
-        pass
+        return self.stack.is_empty()
 
     def size(self):
-        pass
+        return self.stack.size()
